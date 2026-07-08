@@ -1,7 +1,5 @@
-import type { BaseEntity } from "../common";
-
-export interface GrammarDTO extends BaseEntity {
-  exerciseId: number;
+export interface GrammarDTO {
+  id: number;
   topic: string;
   rule: string;
   example: string | null;

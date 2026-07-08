@@ -1,12 +1,17 @@
+'use client';
+
 import { BookOpen } from 'lucide-react';
-import { Empty } from '@/components/common/Empty';
 
 export function LessonEmpty() {
   return (
-    <Empty
-      icon={BookOpen}
-      title="No lessons found"
-      description="There are no lessons matching your search. Try adjusting your filters or check back later for new content."
-    />
+    <div className="flex flex-col items-center justify-center py-16 text-center">
+      <BookOpen className="h-16 w-16 text-muted-foreground/40" />
+      <h3 className="mt-4 text-lg font-semibold text-foreground">
+        No lessons yet
+      </h3>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Lessons will appear here once they are available.
+      </p>
+    </div>
   );
 }

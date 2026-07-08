@@ -1,7 +1,5 @@
-import type { BaseEntity } from "../common";
-
-export interface ObjectiveDTO extends BaseEntity {
-  lessonId: number;
+export interface ObjectiveDTO {
+  id: number;
   unitCode: string;
   skill: string | null;
   grammar: string | null;

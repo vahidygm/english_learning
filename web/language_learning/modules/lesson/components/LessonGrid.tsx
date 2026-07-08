@@ -1,5 +1,7 @@
-import { LessonCard } from './LessonCard';
+'use client';
+
 import type { LessonSummaryDTO } from '@/types';
+import { LessonCard } from './LessonCard';
 
 interface LessonGridProps {
   lessons: LessonSummaryDTO[];

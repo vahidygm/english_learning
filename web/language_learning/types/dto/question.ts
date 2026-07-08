@@ -1,9 +1,7 @@
-import type { BaseEntity } from "../common";
-
-export interface QuestionDTO extends BaseEntity {
-  exerciseId: number;
-  number: string;
+export interface QuestionDTO {
+  id: number;
+  number: number;
   text: string;
-  answer: string | null;
+  answer: string;
   order: number;
 }

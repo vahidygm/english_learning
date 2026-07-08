@@ -1,67 +1,70 @@
 'use client';
 
 import Link from 'next/link';
-import { BookOpen, Languages, Volume2 } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Layers, BookText, Languages, Volume2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { ROUTES } from '@/lib/constants';
+import type { UnitSummaryDTO } from '@/types';
 
 interface UnitCardProps {
-  unit: {
-    id: number;
-    code: string;
-    title: string;
-    grammarSummary: string | null;
-    vocabularySummary: string | null;
-    pronunciationSummary: string | null;
-  };
+  unit: UnitSummaryDTO;
   lessonId: number;
 }
 
 export function UnitCard({ unit, lessonId }: UnitCardProps) {
   return (
-    <Link href={ROUTES.UNIT_DETAIL(lessonId, unit.id)}>
-      <div
+    <Link href={`/lessons/${lessonId}/units/${unit.id}`} className="block">
+      <motion.div
+        whileHover={{ scale: 1.01 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         className={cn(
-          'group rounded-xl border border-border bg-card p-5',
-          'transition-all duration-200',
-          'hover:border-primary/40 hover:shadow-md hover:-translate-y-0.5',
+          'overflow-hidden rounded-lg bg-card shadow-sm',
+          'border border-border transition-shadow hover:shadow-md',
         )}
       >
-        <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-card-foreground group-hover:text-primary transition-colors">
-            {unit.title}
-          </h3>
-          <span
-            className={cn(
-              'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium',
-              'bg-primary/10 text-primary',
-            )}
-          >
-            {unit.code}
-          </span>
-        </div>
+        <div className="p-5">
+          <div className="flex items-start justify-between">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-semibold text-primary">
+                {unit.code}
+              </span>
+              <h3 className="text-base font-semibold text-foreground">
+                {unit.title}
+              </h3>
+            </div>
+            <div className="flex items-center gap-1 text-sm text-muted-foreground">
+              <Layers className="h-4 w-4" />
+              <span>
+                {unit.sectionCount}{' '}
+                {unit.sectionCount === 1 ? 'section' : 'sections'}
+              </span>
+            </div>
+          </div>
 
-        <div className="space-y-2">
-          {unit.grammarSummary && (
-            <div className="flex items-start gap-2 text-sm text-muted-foreground">
-              <BookOpen className="mt-0.5 h-4 w-4 shrink-0 text-blue-500" />
-              <span className="line-clamp-2">{unit.grammarSummary}</span>
-            </div>
-          )}
-          {unit.vocabularySummary && (
-            <div className="flex items-start gap-2 text-sm text-muted-foreground">
-              <Languages className="mt-0.5 h-4 w-4 shrink-0 text-green-500" />
-              <span className="line-clamp-2">{unit.vocabularySummary}</span>
-            </div>
-          )}
-          {unit.pronunciationSummary && (
-            <div className="flex items-start gap-2 text-sm text-muted-foreground">
-              <Volume2 className="mt-0.5 h-4 w-4 shrink-0 text-orange-500" />
-              <span className="line-clamp-2">{unit.pronunciationSummary}</span>
-            </div>
-          )}
+          <div className="mt-3 flex flex-wrap gap-2">
+            {unit.grammarSummary && (
+              <div className="flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-xs text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+                <BookText className="h-3 w-3" />
+                <span className="line-clamp-1">{unit.grammarSummary}</span>
+              </div>
+            )}
+            {unit.vocabularySummary && (
+              <div className="flex items-center gap-1 rounded-full bg-green-50 px-2.5 py-1 text-xs text-green-700 dark:bg-green-950 dark:text-green-300">
+                <Languages className="h-3 w-3" />
+                <span className="line-clamp-1">{unit.vocabularySummary}</span>
+              </div>
+            )}
+            {unit.pronunciationSummary && (
+              <div className="flex items-center gap-1 rounded-full bg-purple-50 px-2.5 py-1 text-xs text-purple-700 dark:bg-purple-950 dark:text-purple-300">
+                <Volume2 className="h-3 w-3" />
+                <span className="line-clamp-1">
+                  {unit.pronunciationSummary}
+                </span>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </motion.div>
     </Link>
   );
 }

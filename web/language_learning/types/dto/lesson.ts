@@ -1,14 +1,5 @@
-import type { BaseEntity } from "../common";
-import type { ObjectiveDTO } from "./objective";
-import type { UnitDTO } from "./unit";
-
-export interface LessonDTO extends BaseEntity {
-  number: number;
-  title: string;
-  coverImage: string | null;
-  objectives?: ObjectiveDTO[];
-  units?: UnitDTO[];
-}
+import type { ObjectiveDTO } from './objective';
+import type { UnitSummaryDTO } from './unit';
 
 export interface LessonSummaryDTO {
   id: number;
@@ -16,4 +7,13 @@ export interface LessonSummaryDTO {
   title: string;
   coverImage: string | null;
   unitCount: number;
+}
+
+export interface LessonDetailDTO {
+  id: number;
+  number: number;
+  title: string;
+  coverImage: string | null;
+  objectives: ObjectiveDTO[];
+  units: UnitSummaryDTO[];
 }

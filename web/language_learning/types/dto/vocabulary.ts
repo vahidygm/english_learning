@@ -1,7 +1,5 @@
-import type { BaseEntity } from "../common";
-
-export interface VocabularyDTO extends BaseEntity {
-  exerciseId: number;
+export interface VocabularyDTO {
+  id: number;
   category: string | null;
   word: string;
   meaning: string;

@@ -1,9 +1,8 @@
-import type { BaseEntity } from "../common";
-import type { ExerciseDTO } from "./exercise";
+import type { ExerciseDTO } from './exercise';
 
-export interface SectionDTO extends BaseEntity {
-  unitId: number;
+export interface SectionDTO {
+  id: number;
   name: string;
   order: number;
-  exercises?: ExerciseDTO[];
+  exercises: ExerciseDTO[];
 }

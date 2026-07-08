@@ -1,38 +1,25 @@
 import { apiClient } from '@/lib/api';
 import { API_ENDPOINTS } from '@/lib/constants';
 import type {
-  ApiListResponse,
+  ApiPaginatedResponse,
   ApiResponse,
-  GetLessonsRequest,
-  LessonDTO,
   LessonSummaryDTO,
+  LessonDetailDTO,
 } from '@/types';
 
 export async function fetchLessons(
-  params?: GetLessonsRequest,
-): Promise<ApiListResponse<LessonSummaryDTO>> {
-  const response = await apiClient.get<ApiListResponse<LessonSummaryDTO>>(
+  params?: { page?: number; pageSize?: number },
+): Promise<LessonSummaryDTO[]> {
+  const response = await apiClient.get<ApiPaginatedResponse<LessonSummaryDTO>>(
     API_ENDPOINTS.LESSONS,
     { params },
   );
-  return response.data;
+  return response.data.data.items;
 }
 
-export async function fetchLesson(
-  id: number,
-): Promise<ApiResponse<LessonDTO>> {
-  const response = await apiClient.get<ApiResponse<LessonDTO>>(
-    `${API_ENDPOINTS.LESSONS}/${id}`,
+export async function fetchLesson(id: number): Promise<LessonDetailDTO> {
+  const response = await apiClient.get<ApiResponse<LessonDetailDTO>>(
+    API_ENDPOINTS.LESSON(id),
   );
-  return response.data;
-}
-
-export async function fetchLessonWithUnits(
-  id: number,
-): Promise<ApiResponse<LessonDTO>> {
-  const response = await apiClient.get<ApiResponse<LessonDTO>>(
-    `${API_ENDPOINTS.LESSONS}/${id}`,
-    { params: { includeUnits: true } },
-  );
-  return response.data;
+  return response.data.data;
 }

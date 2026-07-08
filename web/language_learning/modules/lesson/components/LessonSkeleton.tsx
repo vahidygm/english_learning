@@ -1,26 +1,19 @@
-import { cn } from '@/lib/utils';
+'use client';
 
-interface LessonSkeletonProps {
-  count?: number;
-}
-
-function SkeletonCard() {
-  return (
-    <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-      <div className="aspect-[16/10] w-full animate-pulse bg-muted" />
-      <div className="p-4">
-        <div className="h-5 w-3/4 animate-pulse rounded-md bg-muted" />
-        <div className="mt-3 h-4 w-1/3 animate-pulse rounded-md bg-muted" />
-      </div>
-    </div>
-  );
-}
-
-export function LessonSkeleton({ count = 8 }: LessonSkeletonProps) {
+export function LessonSkeleton() {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {Array.from({ length: count }, (_, i) => (
-        <SkeletonCard key={i} />
+      {Array.from({ length: 8 }).map((_, i) => (
+        <div
+          key={i}
+          className="animate-pulse overflow-hidden rounded-xl border border-border bg-card shadow-sm"
+        >
+          <div className="aspect-[16/10] w-full bg-muted" />
+          <div className="space-y-3 p-4">
+            <div className="h-5 w-3/4 rounded bg-muted" />
+            <div className="h-4 w-1/3 rounded bg-muted" />
+          </div>
+        </div>
       ))}
     </div>
   );

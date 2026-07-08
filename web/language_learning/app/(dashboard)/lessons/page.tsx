@@ -1,47 +1,44 @@
-"use client";
+'use client';
 
-import { useLessons } from "@/hooks/useLessons";
-import { useLessonStore } from "@/stores/lessonStore";
-import { LessonHeader } from "@/components/lessons/LessonHeader";
-import { LessonGrid } from "@/components/lessons/LessonGrid";
-import { LessonList } from "@/components/lessons/LessonList";
-import { LessonCard } from "@/components/lessons/LessonCard";
-import { LessonSkeleton } from "@/components/lessons/LessonSkeleton";
-import { LessonEmpty } from "@/components/lessons/LessonEmpty";
-import { ROUTES } from "@/lib/constants";
+import { BookOpen } from 'lucide-react';
+import {
+  useLessons,
+  LessonGrid,
+  LessonSkeleton,
+  LessonEmpty,
+} from '@/modules/lesson';
 
 export default function LessonsPage() {
-  const { viewMode, filters } = useLessonStore();
-  const { data: lessons, isLoading } = useLessons(filters);
+  const { data: lessons, isLoading, error } = useLessons();
 
   return (
     <div className="space-y-6">
-      <LessonHeader />
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+          <BookOpen className="h-5 w-5 text-primary" />
+        </div>
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">Lessons</h1>
+          <p className="text-sm text-muted-foreground">
+            Browse and start learning
+          </p>
+        </div>
+      </div>
 
-      {isLoading ? (
-        <LessonSkeleton count={8} />
-      ) : !lessons || lessons.length === 0 ? (
+      {isLoading && <LessonSkeleton />}
+
+      {error && (
+        <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
+          Failed to load lessons. Please try again later.
+        </div>
+      )}
+
+      {!isLoading && !error && lessons && lessons.length === 0 && (
         <LessonEmpty />
-      ) : viewMode === "grid" ? (
-        <LessonGrid>
-          {lessons.map((lesson) => (
-            <LessonCard
-              key={lesson.id}
-              lesson={lesson}
-              href={ROUTES.LESSON(lesson.id)}
-            />
-          ))}
-        </LessonGrid>
-      ) : (
-        <LessonList>
-          {lessons.map((lesson) => (
-            <LessonCard
-              key={lesson.id}
-              lesson={lesson}
-              href={ROUTES.LESSON(lesson.id)}
-            />
-          ))}
-        </LessonList>
+      )}
+
+      {!isLoading && !error && lessons && lessons.length > 0 && (
+        <LessonGrid lessons={lessons} />
       )}
     </div>
   );

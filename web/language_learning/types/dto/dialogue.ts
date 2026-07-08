@@ -1,14 +1,12 @@
-import type { BaseEntity } from "../common";
-
-export interface DialogueLineDTO extends BaseEntity {
-  dialogueId: number;
+export interface DialogueLineDTO {
+  id: number;
   speaker: string;
   text: string;
   order: number;
 }
 
-export interface DialogueDTO extends BaseEntity {
-  exerciseId: number;
+export interface DialogueDTO {
+  id: number;
   title: string;
-  lines?: DialogueLineDTO[];
+  lines: DialogueLineDTO[];
 }

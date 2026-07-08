@@ -1,22 +1,21 @@
-import type { BaseEntity } from "../common";
-import type { DialogueDTO } from "./dialogue";
-import type { GrammarDTO } from "./grammar";
-import type { MediaDTO } from "./media";
-import type { PronunciationDTO } from "./pronunciation";
-import type { QuestionDTO } from "./question";
-import type { VocabularyDTO } from "./vocabulary";
+import type { QuestionDTO } from './question';
+import type { DialogueDTO } from './dialogue';
+import type { VocabularyDTO } from './vocabulary';
+import type { GrammarDTO } from './grammar';
+import type { PronunciationDTO } from './pronunciation';
+import type { MediaDTO } from './media';
 
-export interface ExerciseDTO extends BaseEntity {
-  sectionId: number;
-  number: string;
+export interface ExerciseDTO {
+  id: number;
+  number: number;
   title: string;
   type: string;
-  instruction?: string;
+  instruction: string | null;
   order: number;
-  questions?: QuestionDTO[];
-  dialogues?: DialogueDTO[];
-  vocabulary?: VocabularyDTO[];
-  grammar?: GrammarDTO[];
-  pronunciation?: PronunciationDTO[];
-  media?: MediaDTO[];
+  questions: QuestionDTO[];
+  dialogues: DialogueDTO[];
+  vocabulary: VocabularyDTO[];
+  grammar: GrammarDTO[];
+  pronunciation: PronunciationDTO[];
+  media: MediaDTO[];
 }
