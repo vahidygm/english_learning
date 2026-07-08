@@ -1,0 +1,35 @@
+:root {
+  --color-success: oklch(0.72 0.19 142);
+  --color-success-foreground: oklch(0.98 0.01 142);
+  --color-success-muted: oklch(0.92 0.08 142);
+
+  --color-warning: oklch(0.78 0.16 75);
+  --color-warning-foreground: oklch(0.98 0.01 75);
+  --color-warning-muted: oklch(0.92 0.08 75);
+
+  --color-info: oklch(0.62 0.18 250);
+  --color-info-foreground: oklch(0.98 0.01 250);
+  --color-info-muted: oklch(0.92 0.06 250);
+
+  --color-accent-indigo: oklch(0.58 0.2 275);
+  --color-accent-indigo-foreground: oklch(0.98 0.01 275);
+  --color-accent-indigo-muted: oklch(0.92 0.06 275);
+}
+
+.dark {
+  --color-success: oklch(0.65 0.17 142);
+  --color-success-foreground: oklch(0.15 0.02 142);
+  --color-success-muted: oklch(0.25 0.06 142);
+
+  --color-warning: oklch(0.72 0.14 75);
+  --color-warning-foreground: oklch(0.15 0.02 75);
+  --color-warning-muted: oklch(0.25 0.06 75);
+
+  --color-info: oklch(0.55 0.16 250);
+  --color-info-foreground: oklch(0.15 0.02 250);
+  --color-info-muted: oklch(0.2 0.04 250);
+
+  --color-accent-indigo: oklch(0.52 0.18 275);
+  --color-accent-indigo-foreground: oklch(0.15 0.02 275);
+  --color-accent-indigo-muted: oklch(0.2 0.04 275);
+}
