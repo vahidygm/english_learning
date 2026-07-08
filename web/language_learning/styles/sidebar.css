@@ -1,0 +1,39 @@
+.sidebar {
+  @apply fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r bg-card;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar--collapsed {
+  transform: translateX(-100%);
+}
+
+.sidebar--expanded {
+  transform: translateX(0);
+}
+
+.sidebar-overlay {
+  @apply fixed inset-0 z-30 bg-black/50;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar-overlay--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    @apply relative z-auto;
+    transform: translateX(0);
+  }
+
+  .sidebar--collapsed {
+    @apply w-16;
+    transform: translateX(0);
+  }
+}
