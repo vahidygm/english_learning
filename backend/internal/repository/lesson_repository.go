@@ -14,6 +14,11 @@ func NewLessonRepository(db *gorm.DB) *LessonRepository {
 	return &LessonRepository{db: db}
 }
 
+// CreateLesson saves a lesson and all its associations to the database.
+func (r *LessonRepository) CreateLesson(lesson *models.Lesson) error {
+	return r.db.Create(lesson).Error
+}
+
 func (r *LessonRepository) GetAllLessons(page, pageSize int) ([]models.Lesson, int64, error) {
 	var lessons []models.Lesson
 	var total int64
@@ -61,6 +66,7 @@ func (r *LessonRepository) GetLessonByID(id uint) (*models.Lesson, error) {
 		Preload("Units.Sections.Exercises.Pronunciation", func(db *gorm.DB) *gorm.DB {
 			return db.Order(`"order" ASC`)
 		}).
+		Preload("Units.Sections.Exercises.Tables").
 		Preload("Units.Sections.Exercises.Media", func(db *gorm.DB) *gorm.DB {
 			return db.Order(`"order" ASC`)
 		}).
