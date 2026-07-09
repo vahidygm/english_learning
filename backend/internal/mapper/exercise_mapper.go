@@ -39,6 +39,11 @@ func (m *ExerciseMapper) ToDTO(e models.Exercise) dto.ExerciseDTO {
 		pronunciation[i] = m.pronunciationToDTO(p)
 	}
 
+	tables := make([]dto.TableDTO, len(e.Tables))
+	for i, t := range e.Tables {
+		tables[i] = m.tableToDTO(t)
+	}
+
 	media := make([]dto.MediaDTO, len(e.Media))
 	for i, md := range e.Media {
 		media[i] = m.mediaMapper.ToDTO(md)
@@ -56,6 +61,7 @@ func (m *ExerciseMapper) ToDTO(e models.Exercise) dto.ExerciseDTO {
 		Vocabulary:    vocabulary,
 		Grammar:       grammar,
 		Pronunciation: pronunciation,
+		Tables:        tables,
 		Media:         media,
 	}
 }
@@ -124,5 +130,13 @@ func (m *ExerciseMapper) pronunciationToDTO(p models.Pronunciation) dto.Pronunci
 		IPA:     p.IPA,
 		AudioID: p.AudioID,
 		Order:   p.Order,
+	}
+}
+
+func (m *ExerciseMapper) tableToDTO(t models.Table) dto.TableDTO {
+	return dto.TableDTO{
+		ID:    t.ID,
+		Title: t.Title,
+		HTML:  t.HTML,
 	}
 }

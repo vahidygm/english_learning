@@ -12,6 +12,7 @@ type ExerciseDTO struct {
 	Vocabulary    []VocabularyDTO    `json:"vocabulary"`
 	Grammar       []GrammarDTO       `json:"grammar"`
 	Pronunciation []PronunciationDTO `json:"pronunciation"`
+	Tables        []TableDTO         `json:"tables"`
 	Media         []MediaDTO         `json:"media"`
 }
 
@@ -60,4 +61,10 @@ type PronunciationDTO struct {
 	IPA     string `json:"ipa"`
 	AudioID *uint  `json:"audioId"`
 	Order   int    `json:"order"`
+}
+
+type TableDTO struct {
+	ID    uint   `json:"id"`
+	Title string `json:"title"`
+	HTML  string `json:"html"`
 }

@@ -39,6 +39,7 @@ func (r *UnitRepository) GetUnitByID(id uint) (*models.Unit, error) {
 		Preload("Sections.Exercises.Pronunciation", func(db *gorm.DB) *gorm.DB {
 			return db.Order(`"order" ASC`)
 		}).
+		Preload("Sections.Exercises.Tables").
 		Preload("Sections.Exercises.Media", func(db *gorm.DB) *gorm.DB {
 			return db.Order(`"order" ASC`)
 		}).

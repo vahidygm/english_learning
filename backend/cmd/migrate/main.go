@@ -70,6 +70,7 @@ func main() {
 		&models.Vocabulary{},
 		&models.Grammar{},
 		&models.Pronunciation{},
+		&models.Table{},
 		&models.Media{},
 		&models.Audio{},
 	)
