@@ -54,6 +54,7 @@ type Exercise struct {
 	Vocabulary    []Vocabulary    `gorm:"foreignKey:ExerciseID"`
 	Grammar       []Grammar       `gorm:"foreignKey:ExerciseID"`
 	Pronunciation []Pronunciation `gorm:"foreignKey:ExerciseID"`
+	Tables        []Table         `gorm:"foreignKey:ExerciseID"`
 	Media         []Media         `gorm:"foreignKey:ExerciseID"`
 }
 
@@ -108,6 +109,13 @@ type Pronunciation struct {
 	IPA        string `gorm:"column:ipa"`
 	AudioID    *uint  `gorm:"column:audio_id"`
 	Order      int    `gorm:"column:order"`
+}
+
+type Table struct {
+	gorm.Model
+	ExerciseID uint   `gorm:"column:exercise_id"`
+	Title      string `gorm:"column:title"`
+	HTML       string `gorm:"column:html;type:text"`
 }
 
 type Media struct {
