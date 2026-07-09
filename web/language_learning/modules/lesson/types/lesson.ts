@@ -1,4 +1,4 @@
-import type { Unit } from "@/types/dto/unit";
+import type { UnitDetailDTO as Unit } from "@/types/dto/unit";
 
 /**
  * Main lesson entity.

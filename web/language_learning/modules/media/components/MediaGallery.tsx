@@ -23,7 +23,7 @@ export function MediaGallery({ items }: MediaGalleryProps) {
               <AudioPlayer
                 key={item.id}
                 src={item.url}
-                caption={item.caption}
+                caption={item.caption ?? undefined}
               />
             );
 
@@ -32,7 +32,7 @@ export function MediaGallery({ items }: MediaGalleryProps) {
               <ImageViewer
                 key={item.id}
                 src={item.url}
-                caption={item.caption}
+                caption={item.caption ?? undefined}
               />
             );
 

@@ -1,8 +1,8 @@
-import type { UnitDTO } from '@/types';
+import type { UnitSummaryDTO } from '@/types';
 import { UnitCard } from './UnitCard';
 
 interface UnitGridProps {
-  units: UnitDTO[];
+  units: UnitSummaryDTO[];
   lessonId: number;
 }
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
@@ -24,12 +24,13 @@ export default function HomePage() {
           learning paths. Start your journey to fluency today.
         </p>
 
-        <Button asChild size="lg" className="text-base">
-          <Link href="/lessons">
-            <BookOpen className="mr-2 h-5 w-5" />
-            Start Learning
-          </Link>
-        </Button>
+        <Link
+          href="/lessons"
+          className={buttonVariants({ size: "lg", className: "text-base" })}
+        >
+          <BookOpen className="mr-2 h-5 w-5" />
+          Start Learning
+        </Link>
       </div>
     </main>
   );

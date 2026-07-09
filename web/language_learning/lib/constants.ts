@@ -19,9 +19,20 @@ export const ROUTES = {
 
 export const API_ENDPOINTS = {
   HEALTH: '/api/v1/health',
+  AUTH: {
+    LOGIN: '/api/v1/auth/login',
+    REGISTER: '/api/v1/auth/register',
+    LOGOUT: '/api/v1/auth/logout',
+    ME: '/api/v1/auth/me',
+  },
   LESSONS: '/api/v1/lessons',
   LESSON: (id: number | string) => `/api/v1/lessons/${id}`,
   UNITS: '/api/v1/units',
   UNIT: (id: number | string) => `/api/v1/units/${id}`,
+  SECTIONS: (unitId: number | string) => `/api/v1/units/${unitId}/sections`,
+  SECTION: (id: number | string) => `/api/v1/sections/${id}`,
+  EXERCISES: (sectionId: number | string) => `/api/v1/sections/${sectionId}/exercises`,
+  EXERCISE: (id: number | string) => `/api/v1/exercises/${id}`,
+  PROGRESS: '/api/v1/progress',
   MEDIA: (id: number | string) => `/api/v1/media/${id}`,
 } as const;

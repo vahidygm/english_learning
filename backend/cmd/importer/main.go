@@ -5,16 +5,28 @@ import (
 	"log"
 	"os"
 
-	"english-importer/internal/db"
+	"english-importer/db"
 	"english-importer/internal/importer/mineru"
 	"english-importer/internal/repository"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	err := godotenv.Load()
+    if err != nil {
+        log.Println("No .env file found, using system environment variables")
+    }
 
-	dsn := os.Getenv("DB_DSN")
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
+		os.Getenv("DB_HOST"),
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_NAME"),
+		os.Getenv("DB_PORT"),
+	)
 	if dsn == "" {
-		dsn = "host=postgres user=postgres password=postgres dbname=english port=5432 sslmode=disable"
+		log.Fatal("DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT environment variables are required")
 	}
 
 	database, err := db.New(dsn)

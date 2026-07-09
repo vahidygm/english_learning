@@ -22,8 +22,8 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const sidebarOpen = useUIStore((state) => state.sidebarOpen);
-  const closeSidebar = useUIStore((state) => state.closeSidebar);
+  const sidebarOpen = useUIStore((state) => state.isSidebarOpen);
+  const closeSidebar = () => useUIStore.getState().setSidebarOpen(false);
 
   return (
     <>

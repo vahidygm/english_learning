@@ -2719,13 +2719,13 @@ During development
 ```
 Frontend
 
-localhost:3000
+localhost:3009
 
 ↓
 
 Backend
 
-localhost:8080
+localhost:8083
 ```
 
 Backend enables CORS.

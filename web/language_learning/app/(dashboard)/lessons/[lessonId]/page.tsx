@@ -8,12 +8,12 @@ import { UnitCard } from '@/modules/unit';
 import { ROUTES } from '@/lib/constants';
 
 interface LessonDetailPageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ lessonId: string }>;
 }
 
 export default function LessonDetailPage(props: LessonDetailPageProps) {
   const params = use(props.params);
-  const lessonId = Number(params.id);
+  const lessonId = Number(params.lessonId);
   const { data: lesson, isLoading, error } = useLesson(lessonId);
 
   if (isLoading) {

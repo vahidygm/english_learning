@@ -22,9 +22,9 @@ export function PronunciationCard({ pronunciation }: PronunciationCardProps) {
       <p className="mb-3 text-sm text-foreground">{pronunciation.text}</p>
 
       <div className="flex items-center gap-3">
-        <IPAViewer ipa={pronunciation.ipa} />
+        {pronunciation.ipa && <IPAViewer ipa={pronunciation.ipa} />}
         <PronunciationPlayer
-          audioId={pronunciation.audioId}
+          audioId={pronunciation.audioId ?? undefined}
           text={pronunciation.text}
         />
       </div>

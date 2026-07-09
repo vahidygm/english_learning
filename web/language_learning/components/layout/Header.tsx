@@ -5,7 +5,7 @@ import { APP_NAME } from '@/lib/constants';
 import { useUIStore } from '@/stores/ui-store';
 
 export function Header() {
-  const sidebarOpen = useUIStore((state) => state.sidebarOpen);
+  const sidebarOpen = useUIStore((state) => state.isSidebarOpen);
   const toggleSidebar = useUIStore((state) => state.toggleSidebar);
 
   return (

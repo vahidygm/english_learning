@@ -4,6 +4,8 @@ export interface ApiResponse<T> {
   error?: { code: string; message: string };
 }
 
+export type ApiListResponse<T> = ApiResponse<T[]>;
+
 export interface ApiPaginatedResponse<T> {
   success: boolean;
   data: {

@@ -2,21 +2,21 @@ version: "3.9"
 
 services:
 
-  importer:
-    build: .
-    environment:
-      DB_DSN: host=postgres user=postgres password=postgres dbname=english port=5432 sslmode=disable
-      FILE_PATH: /data/lesson1.json
-    volumes:
-      - ./data:/data
-    depends_on:
-      - postgres
+  # importer:
+  #   build: .
+  #   environment:
+  #     DB_DSN: host=postgres user=postgres password=postgres dbname=english port=5432 sslmode=disable
+  #     FILE_PATH: /data/lesson1.json
+  #   volumes:
+  #     - ./data:/data
+  #   depends_on:
+  #     - postgres
 
   postgres:
     image: postgres:18-alpine
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: english
+      POSTGRES_DB: english_learning
     ports:
-      - "5432:5432"
+      - "5436:5432"

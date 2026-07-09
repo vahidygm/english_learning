@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { LogOut, User } from 'lucide-react';
-import { useAuthStore } from '@/modules/auth/store/auth.store';
+import { useAuthStore } from '@/stores/auth.store';
 import { cn } from '@/lib/utils';
 
 export function UserMenu() {

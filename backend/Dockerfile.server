@@ -27,6 +27,6 @@ COPY --from=builder /server /app/server
 # Create storage directory
 RUN mkdir -p /app/storage
 
-EXPOSE 8080
+EXPOSE 8083
 
 CMD ["/app/server"]

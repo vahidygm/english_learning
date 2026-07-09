@@ -1,5 +1,5 @@
 // API response types
-export type { ApiResponse, ApiPaginatedResponse, ApiErrorResponse } from './api/response';
+export type { ApiResponse, ApiListResponse, ApiPaginatedResponse, ApiErrorResponse } from './api/response';
 
 // DTO types
 export type { LessonSummaryDTO, LessonDetailDTO } from './dto/lesson';
@@ -13,3 +13,6 @@ export type { VocabularyDTO } from './dto/vocabulary';
 export type { GrammarDTO } from './dto/grammar';
 export type { PronunciationDTO } from './dto/pronunciation';
 export type { MediaDTO } from './dto/media';
+
+// Enums
+export { ExerciseType, MediaType, SectionName } from './enums';

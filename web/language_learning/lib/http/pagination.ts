@@ -1,15 +1,15 @@
-import type { PaginatedResponse } from "@/types/api/response";
+import type { ApiPaginatedResponse } from "@/types/api/response";
 
 export function getNextPageParam<T>(
-  lastPage: PaginatedResponse<T>,
+  lastPage: ApiPaginatedResponse<T>,
 ): number | undefined {
-  const { page, totalPages } = lastPage.meta;
+  const { page, totalPages } = lastPage.data;
   return page < totalPages ? page + 1 : undefined;
 }
 
 export function getPreviousPageParam<T>(
-  firstPage: PaginatedResponse<T>,
+  firstPage: ApiPaginatedResponse<T>,
 ): number | undefined {
-  const { page } = firstPage.meta;
+  const { page } = firstPage.data;
   return page > 1 ? page - 1 : undefined;
 }

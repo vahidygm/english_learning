@@ -21,21 +21,26 @@ export function setupInterceptors(instance: AxiosInstance): void {
     (error: AxiosError<{ message?: string; details?: unknown }>) => {
       if (error.response) {
         const { status, data } = error.response;
+        const message =
+          data?.message ?? error.message ?? "An unexpected error occurred";
         throw new ApiError(
+          message,
           status,
-          data?.message ?? error.message ?? "An unexpected error occurred",
-          data?.details,
+          message,
+          data?.details as Record<string, unknown> | undefined,
         );
       }
 
       if (error.request) {
         throw new ApiError(
-          0,
           "Network error. Please check your connection and try again.",
+          0,
+          "Network error",
         );
       }
 
-      throw new ApiError(0, error.message ?? "An unexpected error occurred");
+      const message = error.message ?? "An unexpected error occurred";
+      throw new ApiError(message, 0, message);
     },
   );
 }

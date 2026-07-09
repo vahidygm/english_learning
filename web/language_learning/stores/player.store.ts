@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import type { AudioPlayerState } from "@/types/audio";
+import type { AudioPlayerState } from "@/types/ui/player";
 
 interface PlayerActions {
   setIsPlaying: (isPlaying: boolean) => void;

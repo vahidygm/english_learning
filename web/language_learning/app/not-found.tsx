@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
@@ -12,9 +12,9 @@ export default function NotFound() {
           Sorry, we couldn&apos;t find the page you&apos;re looking for. It
           might have been moved or doesn&apos;t exist.
         </p>
-        <Button asChild>
-          <Link href="/">Go back home</Link>
-        </Button>
+        <Link href="/" className={buttonVariants()}>
+          Go back home
+        </Link>
       </div>
     </main>
   );

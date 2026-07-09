@@ -1,6 +1,6 @@
 "use client";
 
-import { ErrorDisplay } from "@/components/common/Error";
+import ErrorDisplay from "@/components/common/Error";
 
 export default function LessonsError({
   error,
@@ -9,9 +9,11 @@ export default function LessonsError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const message = error.message || "An unexpected error occurred. Please try again.";
+
   return (
     <div className="flex min-h-[50vh] items-center justify-center">
-      <ErrorDisplay error={error} onRetry={reset} />
+      <ErrorDisplay message={message} onRetry={reset} />
     </div>
   );
 }

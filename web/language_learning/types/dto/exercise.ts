@@ -1,3 +1,4 @@
+import type { ExerciseType } from '../enums';
 import type { QuestionDTO } from './question';
 import type { DialogueDTO } from './dialogue';
 import type { VocabularyDTO } from './vocabulary';
@@ -9,7 +10,7 @@ export interface ExerciseDTO {
   id: number;
   number: number;
   title: string;
-  type: string;
+  type: ExerciseType;
   instruction: string | null;
   order: number;
   questions: QuestionDTO[];
