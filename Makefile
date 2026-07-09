@@ -8,4 +8,4 @@ run-migration:
 run-importer:
 	cd backend && go run ./cmd/importer
 run-importer-specific-file:
-	cd backend && go run ./cmd/importer --file ./books/lesson1.json
+	cd backend && go run ./cmd/importer --file ./books/speakout/lesson1.json
