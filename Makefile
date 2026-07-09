@@ -3,4 +3,9 @@ run-postgres:
 run-backend:
 	cd backend && go run ./cmd/server
 run-migration:
-	cd backend && go run ./cmd/migration
+	cd backend && go run ./cmd/migrate
+
+run-importer:
+	cd backend && go run ./cmd/importer
+run-importer-specific-file:
+	cd backend && go run ./cmd/importer --file ./books/lesson1.json

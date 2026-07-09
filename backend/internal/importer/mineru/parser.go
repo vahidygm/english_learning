@@ -1,7 +1,7 @@
 package mineru
 
 import (
-	"your_project/internal/models"
+	"english-importer/internal/models"
 )
 
 type Mapper struct{}
