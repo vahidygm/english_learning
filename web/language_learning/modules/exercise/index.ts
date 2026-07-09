@@ -1,2 +1,3 @@
 export { ExerciseRenderer } from './components/ExerciseRenderer';
-export { QuestionList } from './components/QuestionList';
+export { MediaGallery } from './components/MediaGallery';
+export { TableRenderer } from './components/TableRenderer';

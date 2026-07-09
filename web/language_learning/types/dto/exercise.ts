@@ -6,6 +6,12 @@ import type { GrammarDTO } from './grammar';
 import type { PronunciationDTO } from './pronunciation';
 import type { MediaDTO } from './media';
 
+export interface TableDTO {
+  id: number;
+  title: string;
+  html: string;
+}
+
 export interface ExerciseDTO {
   id: number;
   number: number;
@@ -18,5 +24,6 @@ export interface ExerciseDTO {
   vocabulary: VocabularyDTO[];
   grammar: GrammarDTO[];
   pronunciation: PronunciationDTO[];
+  tables: TableDTO[];
   media: MediaDTO[];
 }

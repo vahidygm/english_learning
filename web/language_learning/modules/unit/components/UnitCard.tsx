@@ -2,67 +2,90 @@
 
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { Layers, BookText, Languages, Volume2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { UnitSummaryDTO } from '@/types';
+import { ROUTES } from '@/lib/constants';
+import { BookOpen, Mic, Type, Layers, ArrowRight } from 'lucide-react';
 
 interface UnitCardProps {
-  unit: UnitSummaryDTO;
+  unit: {
+    id: number;
+    code: string;
+    title: string;
+    grammarSummary: string | null;
+    vocabularySummary: string | null;
+    pronunciationSummary: string | null;
+    sectionCount: number;
+  };
   lessonId: number;
+  index?: number;
 }
 
-export function UnitCard({ unit, lessonId }: UnitCardProps) {
-  return (
-    <Link href={`/lessons/${lessonId}/units/${unit.id}`} className="block">
-      <motion.div
-        whileHover={{ scale: 1.01 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        className={cn(
-          'overflow-hidden rounded-lg bg-card shadow-sm',
-          'border border-border transition-shadow hover:shadow-md',
-        )}
-      >
-        <div className="p-5">
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-2">
-              <span className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-semibold text-primary">
-                {unit.code}
-              </span>
-              <h3 className="text-base font-semibold text-foreground">
-                {unit.title}
-              </h3>
-            </div>
-            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-              <Layers className="h-4 w-4" />
-              <span>
-                {unit.sectionCount}{' '}
-                {unit.sectionCount === 1 ? 'section' : 'sections'}
-              </span>
-            </div>
-          </div>
+const categoryConfig = [
+  {
+    key: 'grammarSummary' as const,
+    label: 'Grammar',
+    icon: BookOpen,
+    color: 'bg-violet-100 text-violet-700 dark:bg-violet-500/10 dark:text-violet-400',
+  },
+  {
+    key: 'vocabularySummary' as const,
+    label: 'Vocabulary',
+    icon: Type,
+    color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400',
+  },
+  {
+    key: 'pronunciationSummary' as const,
+    label: 'Pronunciation',
+    icon: Mic,
+    color: 'bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400',
+  },
+];
 
-          <div className="mt-3 flex flex-wrap gap-2">
-            {unit.grammarSummary && (
-              <div className="flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-xs text-blue-700 dark:bg-blue-950 dark:text-blue-300">
-                <BookText className="h-3 w-3" />
-                <span className="line-clamp-1">{unit.grammarSummary}</span>
-              </div>
-            )}
-            {unit.vocabularySummary && (
-              <div className="flex items-center gap-1 rounded-full bg-green-50 px-2.5 py-1 text-xs text-green-700 dark:bg-green-950 dark:text-green-300">
-                <Languages className="h-3 w-3" />
-                <span className="line-clamp-1">{unit.vocabularySummary}</span>
-              </div>
-            )}
-            {unit.pronunciationSummary && (
-              <div className="flex items-center gap-1 rounded-full bg-purple-50 px-2.5 py-1 text-xs text-purple-700 dark:bg-purple-950 dark:text-purple-300">
-                <Volume2 className="h-3 w-3" />
-                <span className="line-clamp-1">
-                  {unit.pronunciationSummary}
-                </span>
-              </div>
-            )}
+export function UnitCard({ unit, lessonId, index = 0 }: UnitCardProps) {
+  const activeTags = categoryConfig.filter((c) => unit[c.key]);
+
+  return (
+    <Link href={ROUTES.UNIT_DETAIL(lessonId, unit.id)}>
+      <motion.div
+        whileHover={{ y: -4 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+        className="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 hover:shadow-lg transition-shadow cursor-pointer h-full flex flex-col"
+      >
+        {/* Header */}
+        <div className="flex items-start justify-between mb-3">
+          <div>
+            <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+              {unit.code}
+            </span>
+            <h3 className="font-semibold text-slate-900 dark:text-white text-sm leading-snug mt-1">
+              {unit.title}
+            </h3>
           </div>
+          <ArrowRight className="w-4 h-4 text-slate-300 dark:text-slate-600 group-hover:text-violet-500 group-hover:translate-x-0.5 transition-all shrink-0 mt-1" />
+        </div>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 mb-4 flex-1">
+          {activeTags.map(({ key, label, icon: Icon, color }) => (
+            <span
+              key={key}
+              className={cn(
+                'inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium',
+                color
+              )}
+            >
+              <Icon className="w-3 h-3" />
+              {label}
+            </span>
+          ))}
+        </div>
+
+        {/* Footer */}
+        <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-100 dark:border-slate-800">
+          <Layers className="w-3.5 h-3.5" />
+          <span className="text-xs font-medium">
+            {unit.sectionCount} {unit.sectionCount === 1 ? 'section' : 'sections'}
+          </span>
         </div>
       </motion.div>
     </Link>

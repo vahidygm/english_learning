@@ -1,7 +1,10 @@
 'use client';
 
 import type { ExerciseDTO } from '@/types';
+import { Instruction } from '../Instruction';
 import { QuestionList } from '../QuestionList';
+import { MediaGallery } from '../MediaGallery';
+import { TableRenderer } from '../TableRenderer';
 
 interface DefaultExerciseProps {
   exercise: ExerciseDTO;
@@ -9,12 +12,15 @@ interface DefaultExerciseProps {
 
 export function DefaultExercise({ exercise }: DefaultExerciseProps) {
   return (
-    <div>
-      {exercise.instruction && (
-        <p className="mb-4 text-sm text-muted-foreground">
-          {exercise.instruction}
-        </p>
+    <div className="space-y-4">
+      <Instruction text={exercise.instruction} />
+
+      {exercise.media.length > 0 && <MediaGallery media={exercise.media} />}
+
+      {exercise.tables.length > 0 && (
+        <TableRenderer tables={exercise.tables} />
       )}
+
       {exercise.questions.length > 0 && (
         <QuestionList questions={exercise.questions} />
       )}
